@@ -1,0 +1,820 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Land Without Justice — King Philip's War</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Crimson+Pro:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#f6f0e1;
+    --bg-deep:#ece4cf;
+    --ink:#1f1a14;
+    --ink-soft:#4a3f31;
+    --rule:#c9b88a;
+    --oxblood:#6b2c2c;
+    --forest:#3a5039;
+    --gold:#a8842c;
+    --shadow:0 1px 0 rgba(31,26,20,.06), 0 14px 30px rgba(31,26,20,.08);
+    --serif-display:'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+    --serif-text:'Crimson Pro', Georgia, 'Times New Roman', serif;
+    --sans:'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+  }
+
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  html{scroll-behavior:auto} /* No animation, per request */
+  body{
+    font-family:var(--serif-text);
+    font-size:19px;
+    line-height:1.65;
+    color:var(--ink);
+    background:var(--bg);
+    background-image:
+      radial-gradient(circle at 20% 10%, rgba(168,132,44,.08), transparent 50%),
+      radial-gradient(circle at 80% 80%, rgba(58,80,57,.06), transparent 50%);
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+  }
+
+  /* ---------- Top nav ---------- */
+  .nav{
+    position:sticky;
+    top:0;
+    z-index:50;
+    background:rgba(246,240,225,.95);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--rule);
+  }
+  .nav-inner{
+    max-width:1180px;
+    margin:0 auto;
+    padding:14px 28px;
+    display:flex;
+    align-items:center;
+    gap:24px;
+    flex-wrap:wrap;
+  }
+  .nav-brand{
+    font-family:var(--serif-display);
+    font-weight:600;
+    font-size:18px;
+    letter-spacing:.02em;
+    color:var(--oxblood);
+    margin-right:auto;
+  }
+  .nav a{
+    font-family:var(--sans);
+    font-size:13px;
+    color:var(--ink-soft);
+    text-decoration:none;
+    letter-spacing:.04em;
+  }
+  .nav a:hover{color:var(--oxblood)}
+
+  /* ---------- Layout ---------- */
+  .wrap{max-width:1100px; margin:0 auto; padding:0 32px}
+  section{padding:74px 0; border-bottom:1px solid var(--rule)}
+  section:last-of-type{border-bottom:none}
+
+  .eyebrow{
+    font-family:var(--sans);
+    font-size:12px;
+    text-transform:uppercase;
+    letter-spacing:.22em;
+    color:var(--gold);
+    margin-bottom:14px;
+  }
+  h1, h2, h3{
+    font-family:var(--serif-display);
+    color:var(--ink);
+    font-weight:600;
+    letter-spacing:-.005em;
+  }
+  h1{font-size:64px; line-height:1.05; margin:.1em 0 .3em}
+  h2{font-size:40px; line-height:1.15; margin:0 0 .55em}
+  h3{font-size:24px; line-height:1.25; margin:1.5em 0 .35em; color:var(--oxblood)}
+  .subtitle{
+    font-family:var(--serif-display);
+    font-style:italic;
+    font-size:24px;
+    color:var(--ink-soft);
+    line-height:1.4;
+    margin:0 0 28px;
+    max-width:780px;
+  }
+  p{margin:0 0 1.05em; max-width:78ch}
+  a{color:var(--oxblood)}
+
+  /* ---------- Hero ---------- */
+  .hero{
+    padding:90px 0 80px;
+    border-bottom:1px solid var(--rule);
+    background:
+      linear-gradient(180deg, rgba(236,228,207,.6), transparent 60%),
+      var(--bg);
+  }
+  .hero-grid{
+    display:grid;
+    grid-template-columns:1.25fr 1fr;
+    gap:56px;
+    align-items:center;
+  }
+  .hero figure{margin:0}
+  .hero img{
+    width:100%;
+    height:auto;
+    display:block;
+    border:1px solid var(--rule);
+    box-shadow:var(--shadow);
+    background:#e7dec0;
+  }
+  .hero figcaption{
+    font-family:var(--sans);
+    font-size:12px;
+    color:var(--ink-soft);
+    margin-top:10px;
+    letter-spacing:.02em;
+  }
+  .thesis{
+    font-family:var(--serif-text);
+    font-size:21px;
+    line-height:1.55;
+    color:var(--ink);
+    border-left:3px solid var(--oxblood);
+    padding:6px 0 6px 22px;
+    margin:24px 0 0;
+    max-width:640px;
+  }
+  .meta{
+    font-family:var(--sans);
+    font-size:13px;
+    color:var(--ink-soft);
+    margin-top:32px;
+    letter-spacing:.04em;
+  }
+
+  /* ---------- Body content ---------- */
+  .lede{
+    font-family:var(--serif-display);
+    font-size:24px;
+    line-height:1.5;
+    color:var(--ink);
+    margin:0 0 1.2em;
+    max-width:72ch;
+  }
+  .twocol{
+    display:grid;
+    grid-template-columns:1.2fr 1fr;
+    gap:48px;
+    align-items:start;
+  }
+  .twocol.flip{grid-template-columns:1fr 1.2fr}
+  figure.illus{margin:0}
+  figure.illus img{
+    width:100%;
+    height:auto;
+    display:block;
+    border:1px solid var(--rule);
+    box-shadow:var(--shadow);
+    background:#e7dec0;
+  }
+  figure.illus figcaption{
+    font-family:var(--sans);
+    font-size:12.5px;
+    color:var(--ink-soft);
+    margin-top:10px;
+    line-height:1.45;
+  }
+  /* Image fallback if a remote file is unavailable */
+  figure.illus.img-failed::before{
+    content:"Historical illustration unavailable";
+    display:block;
+    aspect-ratio:4 / 5;
+    background:repeating-linear-gradient(135deg, #ece4cf, #ece4cf 8px, #e3d8b6 8px, #e3d8b6 16px);
+    color:var(--ink-soft);
+    font-family:var(--sans);
+    font-size:12px;
+    letter-spacing:.05em;
+    text-transform:uppercase;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border:1px solid var(--rule);
+  }
+
+  /* Pull quote */
+  blockquote.pull{
+    font-family:var(--serif-display);
+    font-style:italic;
+    font-size:26px;
+    line-height:1.4;
+    color:var(--oxblood);
+    border-left:3px solid var(--oxblood);
+    margin:30px 0;
+    padding:8px 0 8px 26px;
+    max-width:64ch;
+  }
+  blockquote.pull cite{
+    display:block;
+    font-style:normal;
+    font-family:var(--sans);
+    font-size:13px;
+    color:var(--ink-soft);
+    margin-top:10px;
+    letter-spacing:.04em;
+  }
+
+  /* Inline historical quote */
+  .quote{
+    color:var(--oxblood);
+    font-style:italic;
+  }
+
+  /* ---------- Timeline ---------- */
+  .timeline{
+    position:relative;
+    margin:24px 0 0;
+    padding-left:28px;
+    border-left:2px solid var(--rule);
+    max-width:880px;
+  }
+  .tl-item{
+    position:relative;
+    padding:0 0 22px 14px;
+  }
+  .tl-item::before{
+    content:"";
+    position:absolute;
+    left:-37px;
+    top:8px;
+    width:14px;
+    height:14px;
+    background:var(--oxblood);
+    border:3px solid var(--bg);
+    border-radius:50%;
+  }
+  .tl-date{
+    font-family:var(--sans);
+    font-size:12px;
+    letter-spacing:.12em;
+    color:var(--gold);
+    text-transform:uppercase;
+    margin-bottom:2px;
+  }
+  .tl-title{
+    font-family:var(--serif-display);
+    font-weight:600;
+    font-size:20px;
+    color:var(--ink);
+    margin:0 0 4px;
+  }
+  .tl-body{
+    font-family:var(--serif-text);
+    font-size:17px;
+    color:var(--ink-soft);
+    line-height:1.5;
+    margin:0;
+    max-width:60ch;
+  }
+
+  /* ---------- Bibliography ---------- */
+  .bib{
+    display:grid;
+    gap:28px;
+    grid-template-columns:1fr 1fr;
+  }
+  .bib-card{
+    background:var(--bg-deep);
+    border:1px solid var(--rule);
+    padding:24px 26px 22px;
+  }
+  .bib-card h4{
+    font-family:var(--serif-display);
+    font-size:21px;
+    margin:0 0 4px;
+    color:var(--oxblood);
+    font-weight:600;
+    line-height:1.25;
+  }
+  .bib-cite{
+    font-family:var(--sans);
+    font-size:12.5px;
+    color:var(--ink-soft);
+    margin:0 0 12px;
+    line-height:1.5;
+  }
+  .bib-themes{
+    font-family:var(--sans);
+    font-size:11.5px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--forest);
+    margin:0 0 12px;
+  }
+  .bib-card p{font-size:16.5px; line-height:1.55; margin:0; color:var(--ink)}
+
+  /* Image source list */
+  .img-sources{
+    margin-top:42px;
+    padding-top:28px;
+    border-top:1px solid var(--rule);
+  }
+  .img-sources h3{
+    font-family:var(--serif-display);
+    font-size:22px;
+    color:var(--oxblood);
+    margin:0 0 6px;
+  }
+  .img-sources p.sub{
+    font-family:var(--sans);
+    font-size:13px;
+    color:var(--ink-soft);
+    margin:0 0 18px;
+  }
+  ol.img-list{
+    list-style:none;
+    padding:0;
+    margin:0;
+    display:grid;
+    gap:14px;
+    grid-template-columns:1fr 1fr;
+  }
+  ol.img-list li{
+    background:var(--bg-deep);
+    border:1px solid var(--rule);
+    padding:14px 18px;
+    font-family:var(--sans);
+    font-size:13.5px;
+    line-height:1.5;
+    color:var(--ink);
+  }
+  ol.img-list li .src-title{
+    font-family:var(--serif-display);
+    font-size:17px;
+    color:var(--oxblood);
+    display:block;
+    margin-bottom:2px;
+  }
+  ol.img-list li a{
+    color:var(--forest);
+    word-break:break-all;
+    font-size:12px;
+  }
+  @media (max-width:900px){
+    ol.img-list{grid-template-columns:1fr}
+  }
+
+  /* ---------- Footer ---------- */
+  footer{
+    padding:42px 32px 60px;
+    text-align:center;
+    color:var(--ink-soft);
+    font-family:var(--sans);
+    font-size:13px;
+  }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width:900px){
+    body{font-size:18px}
+    h1{font-size:46px}
+    h2{font-size:32px}
+    .hero-grid, .twocol, .twocol.flip, .bib{grid-template-columns:1fr; gap:32px}
+    .nav-inner{padding:10px 18px; gap:14px}
+    .nav-brand{font-size:16px; flex-basis:100%}
+    .wrap{padding:0 22px}
+    section{padding:56px 0}
+  }
+
+  /* ---------- Print ---------- */
+  @media print{
+    .nav{display:none}
+    body{background:#fff; color:#000}
+    section{padding:24px 0; break-inside:avoid}
+    figure.illus img, .hero img{box-shadow:none}
+  }
+</style>
+<script>
+  // Image fallback chain. Each img has data-fallback with a backup URL.
+  // If the primary URL fails, swap to fallback. If fallback also fails, show placeholder.
+  function swapSrc(img){
+    var fb = img.getAttribute('data-fallback');
+    if (fb && img.getAttribute('src') !== fb) {
+      img.setAttribute('data-fallback', '');
+      img.setAttribute('src', fb);
+      return;
+    }
+    var fig = img.parentElement;
+    if (fig) fig.classList.add('img-failed');
+    img.style.display = 'none';
+  }
+</script>
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<nav class="nav" aria-label="Section navigation">
+  <div class="nav-inner">
+    <span class="nav-brand">Land Without Justice</span>
+    <a href="#intro">Intro</a>
+    <a href="#background">Background</a>
+    <a href="#illusion">The Illusion</a>
+    <a href="#tensions">Tensions</a>
+    <a href="#outbreak">Outbreak</a>
+    <a href="#violence">Total Violence</a>
+    <a href="#analysis">Law &amp; Violence</a>
+    <a href="#consequences">Consequences</a>
+    <a href="#timeline">Timeline</a>
+    <a href="#pattern">Broader Pattern</a>
+    <a href="#conclusion">Conclusion</a>
+    <a href="#bibliography">Bibliography</a>
+  </div>
+</nav>
+
+<!-- ============ HERO ============ -->
+<header class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow">American Indian History &middot; Final Presentation</div>
+      <h1>Land Without Justice</h1>
+      <p class="subtitle">Law, Violence, and the Making of King Philip&rsquo;s War, 1620&ndash;1676</p>
+      <p class="thesis">
+        King Philip&rsquo;s War was not a sudden eruption of violence. It was the predictable end of a colonial system in which &ldquo;legality&rdquo; &mdash; treaties, deeds, and courts &mdash; functioned as the polite face of an expansion that depended on force. When Indigenous nations pushed back, colonists abandoned legality almost overnight.
+      </p>
+      <div class="meta">A presentation in eleven sections, with a timeline and a closing bibliography.</div>
+    </div>
+    <figure>
+      <img
+        src="https://wsrv.nl/?url=upload.wikimedia.org/wikipedia/commons/6/6c/Philip_King_of_Mount_Hope_by_Paul_Revere.jpeg"
+        data-fallback="https://upload.wikimedia.org/wikipedia/commons/6/6c/Philip_King_of_Mount_Hope_by_Paul_Revere.jpeg"
+        alt="Paul Revere's 1772 engraving 'Philip, King of Mount Hope,' showing Metacom in profile."
+        onerror="swapSrc(this)">
+      <figcaption>&ldquo;Philip, King of Mount Hope,&rdquo; engraving by Paul Revere, 1772 &mdash; one of the earliest American depictions of Metacom. Wikimedia Commons (public domain).</figcaption>
+    </figure>
+  </div>
+</header>
+
+<!-- ============ INTRO ============ -->
+<section id="intro">
+  <div class="wrap">
+    <div class="eyebrow">Introduction</div>
+    <h2>The Problem</h2>
+    <p class="lede">In June 1675, three Wampanoag men were tried and hanged in Plymouth Colony for the murder of John Sassamon &mdash; a Christian Indian who had warned colonists that Metacom was preparing for war. Within weeks, the conflict the colonists would name after Metacom, whom they called &ldquo;King Philip,&rdquo; had engulfed New England.</p>
+    <p>By the time the fighting ended fourteen months later, dozens of English towns lay in ruins, thousands of Indigenous people were dead or sold into Caribbean slavery, and Metacom&rsquo;s severed head was on a pike at Plymouth, where it would remain for two decades. Per capita, it remains one of the costliest wars in what would become the United States.</p>
+    <p>This presentation traces how a half-century of colonial &ldquo;legal&rdquo; expansion &mdash; treaties, land deeds, court hearings &mdash; collapsed almost overnight into total war, and argues that the legal architecture and the violence that replaced it were never really opposites. They were the same project at different temperatures.</p>
+  </div>
+</section>
+
+<!-- ============ BACKGROUND ============ -->
+<section id="background">
+  <div class="wrap">
+    <div class="eyebrow">Background &middot; Before the War</div>
+    <h2>Plymouth, Massasoit, and the Treaty of 1621</h2>
+    <div class="twocol">
+      <div>
+        <p>When the Plymouth colonists arrived in 1620, they did not encounter unspoiled wilderness. They encountered communities already devastated by an epidemic that had swept the New England coast between 1616 and 1619, killing a staggering portion of the Wampanoag and Pawtuxet populations. Massasoit (Ousamequin), sachem of the Wampanoag, faced this crisis from a weakened position.</p>
+        <p>In March 1621, he agreed to a mutual-aid treaty with the Plymouth settlers &mdash; a brief document of six articles promising non-aggression and shared defense. For Massasoit, the agreement was a strategic alliance against the Narragansett to the west. For the colonists, it would later be cited &mdash; retroactively &mdash; as a foundation for claims of English sovereignty over Wampanoag land.</p>
+        <p>As Lisa Brooks argues in <em>Our Beloved Kin</em>, the diplomatic relationships forged by Massasoit and his sons reflected longstanding Wampanoag traditions of alliance &mdash; networks of kinship, not subordination. But colonial recordkeepers translated those relationships into a vocabulary of subjects and lords. Massasoit kept the peace for forty years. When he died around 1661, his eldest son Wamsutta succeeded him; Wamsutta died suddenly soon after being summoned to Plymouth, and his younger brother Metacom &mdash; Philip &mdash; took up the leadership of the Pokanoket Wampanoag in 1662.</p>
+        <blockquote class="pull">
+          &ldquo;That neither he nor any of his should injure or do hurt to any of their people.&rdquo;
+          <cite>&mdash; Article I of the 1621 Plymouth&ndash;Wampanoag Treaty (paraphrased into modern English from the surviving record)</cite>
+        </blockquote>
+      </div>
+      <figure class="illus">
+        <img
+          src="https://wsrv.nl/?url=commons.wikimedia.org/wiki/Special:FilePath/Chief_Massasoit.jpg"
+          data-fallback="https://commons.wikimedia.org/wiki/Special:FilePath/Chief_Massasoit.jpg"
+          alt="Engraved portrait of Massasoit, sachem of the Wampanoag and father of Metacom."
+          onerror="swapSrc(this)">
+        <figcaption>Chief Massasoit (Ousamequin), sachem of the Wampanoag and father of Metacom. He held the 1621 alliance with Plymouth for forty years. Wikimedia Commons (public domain).</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ILLUSION ============ -->
+<section id="illusion">
+  <div class="wrap">
+    <div class="eyebrow">The Illusion of &ldquo;Legal&rdquo; Expansion</div>
+    <h2>How &ldquo;Sales&rdquo; Were Manufactured</h2>
+    <div class="twocol flip">
+      <figure class="illus">
+        <img
+          src="https://wsrv.nl/?url=commons.wikimedia.org/wiki/Special:FilePath/King_%28Metacomet%29_Philip%2C_Sachem_of_the_Wampanoags%2C_d._1676%2C_full_length%2C_standing_at_treaty_table_with_white_men_LCCN2006686936.jpg"
+          data-fallback="https://commons.wikimedia.org/wiki/Special:FilePath/King_%28Metacomet%29_Philip%2C_Sachem_of_the_Wampanoags%2C_d._1676%2C_full_length%2C_standing_at_treaty_table_with_white_men_LCCN2006686936.jpg"
+          alt="19th-century engraving of Metacom standing at a treaty table with English colonists."
+          onerror="swapSrc(this)">
+        <figcaption>&ldquo;King (Metacomet) Philip, Sachem of the Wampanoags, at a treaty table with white men.&rdquo; Library of Congress, via Wikimedia Commons (public domain). The romanticized image obscures the coercive context of these meetings.</figcaption>
+      </figure>
+      <div>
+        <p>Throughout the 1640s, &rsquo;50s, and &rsquo;60s, English Plymouth and Massachusetts Bay absorbed enormous tracts of Wampanoag, Massachusett, and Nipmuc territory through what the colonial records describe as voluntary &ldquo;deeds&rdquo; and &ldquo;purchases.&rdquo; In <em>Changes in the Land</em>, William Cronon argues that these transactions were built on a fundamental category mistake: English law treated land as a permanent, alienable commodity, while Indigenous nations understood agreements as conferring use rights &mdash; fishing, planting, hunting &mdash; rather than absolute, exclusive ownership.</p>
+        <p>A &ldquo;sale&rdquo; recorded in a Plymouth ledger was, on the Wampanoag side, often closer to a season&rsquo;s lease. The two parties signed the same paper but did not sign the same agreement.</p>
+        <p>Even within English terms, the transactions were coercive. Sachems who refused to sign were fined in colonial courts for unrelated offenses. Newly imported English livestock &mdash; cattle, hogs, horses &mdash; managed by colonists who fenced poorly and let them roam, destroyed Indigenous cornfields; colonists then bought the damaged land cheaply. Schultz and Tougias note in <em>King Philip&rsquo;s War</em> that the legal forms were observed scrupulously even as the substance was extraction.</p>
+        <p>Metacom, summoned again and again to Plymouth to explain himself, watched his territory shrink with each &ldquo;agreement.&rdquo; By 1671 he had been forced to sign a humiliating accord at Taunton: surrender of arms, fines, formal subjection to Plymouth.</p>
+        <blockquote class="pull">
+          &ldquo;Their cattle and horses still increased; when they removed thirty miles from where they used to live, the English would follow them.&rdquo;
+          <cite>&mdash; Metacom&rsquo;s grievances, recorded by Quaker mediator John Easton, 1675</cite>
+        </blockquote>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TENSIONS ============ -->
+<section id="tensions">
+  <div class="wrap">
+    <div class="eyebrow">Rising Tensions</div>
+    <h2>Three Pressures Stack Up</h2>
+    <p class="lede">By the early 1670s, three pressures had piled onto the Wampanoag and their neighbors at the same time. Any one would have been destabilizing. Together, they were unsustainable.</p>
+    <h3>1 &middot; Land</h3>
+    <p>Plymouth and Massachusetts Bay had fenced, plowed, and settled most of the arable coastal land. Indigenous communities were being squeezed onto smaller, lower-quality territory, and the colonial demand for new land was accelerating, not slowing.</p>
+    <h3>2 &middot; Sovereignty</h3>
+    <p>Colonial courts increasingly tried Indigenous people under English law &mdash; including for offenses defined in religious terms (Sabbath-breaking, &ldquo;blasphemy&rdquo;). Indigenous defendants stood before juries that almost never convicted English defendants for the same kinds of harms in reverse.</p>
+    <h3>3 &middot; Culture</h3>
+    <p>The &ldquo;praying town&rdquo; system, run by missionaries like John Eliot, pressured Indigenous communities to convert to Christianity, abandon kinship structures, and resettle in colonial-supervised villages. For Wampanoag and Nipmuc leaders, conversion was indistinguishable from political subjection.</p>
+    <p>In January 1675, John Sassamon &mdash; a Christian Wampanoag, Harvard-educated, who had reportedly warned Plymouth that Metacom was assembling a coalition &mdash; was found dead beneath the ice at Assawompset Pond. Plymouth tried three Wampanoag men for his murder, convicted them on contested testimony, and hanged them in June. The execution was the spark.</p>
+  </div>
+</section>
+
+<!-- ============ OUTBREAK ============ -->
+<section id="outbreak">
+  <div class="wrap">
+    <div class="eyebrow">Outbreak of Violence</div>
+    <h2>Negotiations Collapse in Days</h2>
+    <div class="twocol">
+      <div>
+        <p>Within days of the Sassamon hangings, Wampanoag warriors raided the colonial town of Swansea on June 24, 1675. Plymouth militia mobilized; within two months the war had pulled in Nipmuc, Pocumtuck, and eventually Narragansett combatants, and had spread across what is now Massachusetts, Rhode Island, and Connecticut.</p>
+        <p>The most striking thing about the early summer of 1675 is how fast the diplomatic options closed. The Quaker mediator John Easton, deputy governor of Rhode Island, met with Metacom in mid-June and recorded his grievances in <em>A Relation of the Indian War</em>: that English livestock destroyed Indigenous crops, that drunken sachems were tricked into signing deeds, that English juries convicted Indigenous defendants of capital crimes against colonists but never the reverse. Easton tried to propose arbitration. Plymouth refused.</p>
+        <p>Lisa Brooks, in <em>Our Beloved Kin</em>, emphasizes that Indigenous leaders did not want a war of annihilation. They wanted the legal system to actually function as a legal system &mdash; impartial, reciprocal, accountable. When the colonists made it clear that arbitration was not on offer, the alternative arrived very quickly.</p>
+      </div>
+      <figure class="illus">
+        <img
+          src="https://wsrv.nl/?url=commons.wikimedia.org/wiki/Special:FilePath/Night_Attack_of_Indians.jpg"
+          data-fallback="https://commons.wikimedia.org/wiki/Special:FilePath/Night_Attack_of_Indians.jpg"
+          alt="19th-century engraving of an attack during the early colonial wars of New England."
+          onerror="swapSrc(this)">
+        <figcaption>&ldquo;Night Attack of Indians,&rdquo; 19th-century engraving in the King Philip&rsquo;s War category at Wikimedia Commons. Period images consistently emphasize the suddenness of frontier raids while obscuring their immediate political causes. Wikimedia Commons (public domain).</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ============ VIOLENCE ============ -->
+<section id="violence">
+  <div class="wrap">
+    <div class="eyebrow">Shift to Total Violence</div>
+    <h2>How Quickly the Legal Frame Was Abandoned</h2>
+    <div class="twocol flip">
+      <figure class="illus">
+        <img
+          src="https://wsrv.nl/?url=commons.wikimedia.org/wiki/Special:FilePath/Indians_Attacking_a_Garrison_House.jpg"
+          data-fallback="https://commons.wikimedia.org/wiki/Special:FilePath/Indians_Attacking_a_Garrison_House.jpg"
+          alt="19th-century engraving titled 'Indians Attacking a Garrison House.'"
+          onerror="swapSrc(this)">
+        <figcaption>&ldquo;Indians Attacking a Garrison House,&rdquo; 19th-century engraving depicting an assault on a fortified colonial dwelling. Garrison houses were the primary form of frontier defense during King Philip&rsquo;s War. Wikimedia Commons (public domain).</figcaption>
+      </figure>
+      <div>
+        <p>The war became, very quickly, a contest of mutual destruction. By December 1675, English forces had carried out the Great Swamp Massacre against the Narragansett &mdash; a nation that had not, up to that point, joined the war &mdash; burning a fortified village in present-day Rhode Island and killing between three hundred and a thousand noncombatants. In response, allied Indigenous forces destroyed colonial settlements at Lancaster, Medfield, Marlborough, Sudbury, Providence, and a dozen others. By spring 1676 the frontier line of English settlement had retreated more than fifty miles.</p>
+        <p>Schultz and Tougias note that, per capita, the war is among the costliest in American history for the colonial side. But the Indigenous toll was catastrophic in a different register entirely. Colonial forces, together with the Mohegan and Pequot allies they had retained, captured and sold an estimated one thousand Wampanoag, Narragansett, and Nipmuc people into Caribbean slavery. Metacom himself was killed at Mount Hope on August 12, 1676; his head was carried back to Plymouth and displayed on a pike for nearly twenty years.</p>
+        <p>The legal forms &mdash; trials, deeds, treaties &mdash; that had structured fifty years of colonial expansion were abandoned in months. Captives were not tried; they were sold. Treaties were not negotiated; they were imposed. Land was not deeded; it was forfeited. The &ldquo;praying towns&rdquo; that had supposedly offered legal protection to converted Indigenous Christians were dissolved, and their inhabitants were interned on Deer Island in Boston Harbor through the winter of 1675&ndash;76, where many died of exposure and starvation.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ANALYSIS ============ -->
+<section id="analysis">
+  <div class="wrap">
+    <div class="eyebrow">Analysis &middot; The Central Argument</div>
+    <h2>Law and Violence Were Never Opposites</h2>
+    <p class="lede">The legal architecture of colonial New England and the violence of King Philip&rsquo;s War were not opposites. They were the same project at different temperatures.</p>
+    <p>In the decades before the war, the legal forms &mdash; court hearings, signed deeds, treaty meetings &mdash; gave colonists a moral and political vocabulary for expansion. Lands taken under coercion could be entered into the Plymouth records as voluntary sales. Indigenous defendants tried under English law could be hanged with the procedural assurance of due process. Alan Taylor, in <em>American Colonies</em>, characterizes this dynamic as the consistent pattern of English settlement: legal procedure as the public ledger, force as the silent guarantor.</p>
+    <p>When Indigenous resistance grew strong enough to threaten the ledger, the guarantor came forward. Trials gave way to summary execution. Deeds gave way to confiscation. Diplomacy gave way to internment and enslavement.</p>
+    <p>Lisa Brooks, in <em>Our Beloved Kin</em>, frames the shift more pointedly: from the Indigenous side, there was no &ldquo;shift&rdquo; at all. The violence had been there throughout, exercised under other names &mdash; debt, fines, livestock damage, conversion pressure &mdash; and the war was simply the moment that violence finally took an English face.</p>
+    <blockquote class="pull">
+      The legal system did not fail in 1675. It functioned exactly as designed: it gave the conquest its paperwork, and stepped aside the moment the paperwork ran out.
+      <cite>&mdash; Synthesis of Cronon, Brooks, Taylor, and Schultz &amp; Tougias</cite>
+    </blockquote>
+  </div>
+</section>
+
+<!-- ============ CONSEQUENCES ============ -->
+<section id="consequences">
+  <div class="wrap">
+    <div class="eyebrow">Consequences &middot; (There Always Are)</div>
+    <h2>Who Inherited New England</h2>
+    <p>Of the roughly eleven thousand Indigenous people in southern New England before the war, recent estimates suggest fewer than four thousand remained free in the region by 1680. Wampanoag, Narragansett, and Nipmuc survivors were dispersed to the north, absorbed into Mohegan and Pennacook communities, or sold abroad. Surviving &ldquo;praying&rdquo; Indigenous Christians lost most of their lands; Deer Island internment alone killed hundreds.</p>
+    <p>For the colonists, the consequences were paradoxical. Massachusetts Bay&rsquo;s aggressive prosecution of the war alarmed the Crown, and Charles II revoked the colony&rsquo;s charter in 1684, replacing self-government with the short-lived royal Dominion of New England. But colonial expansion accelerated. By 1700, English settlement had reclaimed and exceeded its pre-war footprint &mdash; this time with no Indigenous polity in southern New England capable of checking it again.</p>
+    <p>Schultz and Tougias close their account by emphasizing this paradox: the war that broke the colonists&rsquo; legal pretensions also removed the only remaining barrier to their physical expansion. The post-1676 New England landscape was, for the first time, a fully colonial one.</p>
+  </div>
+</section>
+
+<!-- ============ TIMELINE ============ -->
+<section id="timeline">
+  <div class="wrap">
+    <div class="eyebrow">Timeline</div>
+    <h2>From Alliance to War to Aftermath</h2>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-date">1620</div>
+        <h4 class="tl-title">Plymouth Colony founded</h4>
+        <p class="tl-body">English settlers arrive in territory already devastated by the 1616&ndash;1619 epidemic.</p>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">March 1621</div>
+        <h4 class="tl-title">Plymouth&ndash;Wampanoag Treaty</h4>
+        <p class="tl-body">Massasoit signs a six-article mutual-aid agreement. The peace will hold for forty years.</p>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">c. 1661</div>
+        <h4 class="tl-title">Massasoit dies</h4>
+        <p class="tl-body">Wamsutta succeeds him, then dies suddenly after being summoned to Plymouth.</p>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">1662</div>
+        <h4 class="tl-title">Metacom (Philip) becomes Pokanoket sachem</h4>
+        <p class="tl-body">Inherits diminishing territory, increasing colonial pressure, and a brother&rsquo;s suspicious death.</p>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">1671</div>
+        <h4 class="tl-title">Treaty of Taunton</h4>
+        <p class="tl-body">Metacom is forced to surrender arms and accept formal subjection to Plymouth. He does not comply.</p>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">January 1675</div>
+        <h4 class="tl-title">John Sassamon found dead</h4>
+        <p class="tl-body">A Christian Wampanoag who had warned Plymouth of Metacom&rsquo;s preparations is killed at Assawompset Pond.</p>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">June 1675</div>
+        <h4 class="tl-title">Three Wampanoag men hanged</h4>
+        <p class="tl-body">Plymouth tries and executes the alleged Sassamon killers on contested evidence.</p>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">June 24, 1675</div>
+        <h4 class="tl-title">Raid on Swansea opens war</h4>
+        <p class="tl-body">Wampanoag warriors strike a Plymouth town. Plymouth militia mobilizes.</p>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">August 1675</div>
+        <h4 class="tl-title">War spreads inland</h4>
+        <p class="tl-body">Brookfield siege; Nipmuc and Pocumtuck combatants enter the war. Frontier collapses west.</p>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">December 19, 1675</div>
+        <h4 class="tl-title">Great Swamp Massacre</h4>
+        <p class="tl-body">English forces destroy a Narragansett village in Rhode Island; hundreds of noncombatants killed.</p>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">February 1676</div>
+        <h4 class="tl-title">Lancaster raid</h4>
+        <p class="tl-body">Mary Rowlandson is taken captive; her later narrative becomes a foundational colonial text.</p>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">Spring 1676</div>
+        <h4 class="tl-title">English frontier collapses</h4>
+        <p class="tl-body">More than fifty miles of settlement abandoned. Praying-town residents interned on Deer Island.</p>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">August 12, 1676</div>
+        <h4 class="tl-title">Metacom killed at Mount Hope</h4>
+        <p class="tl-body">War in southern New England effectively ends. His severed head is displayed at Plymouth for nearly twenty years.</p>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">1676&ndash;78</div>
+        <h4 class="tl-title">Mass enslavements</h4>
+        <p class="tl-body">An estimated 1,000 Indigenous captives sold to the Caribbean. Conflict continues in Maine until 1678.</p>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">1684</div>
+        <h4 class="tl-title">Massachusetts charter revoked</h4>
+        <p class="tl-body">The Crown imposes the Dominion of New England in part as a response to the colony&rsquo;s wartime conduct.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PATTERN ============ -->
+<section id="pattern">
+  <div class="wrap">
+    <div class="eyebrow">Broader Pattern</div>
+    <h2>This Was Not a One-Time Thing</h2>
+    <div class="twocol">
+      <div>
+        <p>The pattern that played out in 1675 &mdash; legal expansion as the velvet glove, total war as the iron fist &mdash; would repeat. In 1763, a coalition led by the Ottawa leader Pontiac rose against British forts and settlements in the Great Lakes region, in direct response to British policies that abrogated French-era diplomatic protections. The British answer was a familiar mixture: imposed treaties, forced removals, and, at Fort Pitt, the documented attempt to spread smallpox through gifted blankets.</p>
+        <p>In the early nineteenth century, the United States used the same combination &mdash; purchase, treaty, removal, war &mdash; across the Old Northwest, the Southeast (the Trail of Tears), and the Plains. Alan Taylor&rsquo;s argument in <em>American Colonies</em> generalizes the case: the legal-violent hybrid that defined New England in 1675 became the operating model of North American settler expansion for the next two centuries. Different actors, different decades, but a recognizable script.</p>
+        <p>King Philip&rsquo;s War is sometimes taught as a tragic local episode. Read against Pontiac&rsquo;s War, the Creek Wars, the Seminole Wars, the Black Hawk War, the Sioux Wars &mdash; it looks less like an episode than like a template.</p>
+      </div>
+      <figure class="illus">
+        <img
+          src="https://wsrv.nl/?url=commons.wikimedia.org/wiki/Special:FilePath/Pontiac%2C_Ottawa_Chief_%28NYPL_Hades-254460-429686%29.jpg"
+          data-fallback="https://commons.wikimedia.org/wiki/Special:FilePath/Pontiac%2C_Ottawa_Chief_%28NYPL_Hades-254460-429686%29.jpg"
+          alt="19th-century lithograph of Pontiac, the Odawa leader of the 1763 uprising."
+          onerror="swapSrc(this)">
+        <figcaption>&ldquo;Pontiac, Ottawa Chief,&rdquo; 19th-century lithograph from the New York Public Library collection. Like Metacom&rsquo;s, Pontiac&rsquo;s uprising followed the collapse of a diplomatic framework that had nominally protected Indigenous sovereignty. Wikimedia Commons (public domain).</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONCLUSION ============ -->
+<section id="conclusion">
+  <div class="wrap">
+    <div class="eyebrow">Conclusion</div>
+    <h2>Why This Matters</h2>
+    <p class="lede">King Philip&rsquo;s War is sometimes taught as a tragic local episode &mdash; a failure of communication, a breakdown of an otherwise functioning diplomatic relationship. The evidence suggests something less consolatory.</p>
+    <p>The war was the predictable conclusion of a system that used legal procedure to legitimize what could not have been legitimized otherwise, and that turned to overt violence the moment legality stopped delivering the result the colonists wanted. The treaties and deeds and court records did not fail in 1675. They were the receipts of a process that had been violent the whole time. The war was simply the receipts catching up to the reality.</p>
+    <p>Understanding King Philip&rsquo;s War clearly is, in part, learning to recognize that pattern when it appears under other names later in American history &mdash; in Pontiac&rsquo;s War, in the Trail of Tears, in the broken treaties of the nineteenth century. The names change. The structure does not.</p>
+    <blockquote class="pull">
+      The legal architecture and the violence that replaced it were never really opposites. They were the same project, at different temperatures.
+      <cite>&mdash; Thesis of this presentation</cite>
+    </blockquote>
+  </div>
+</section>
+
+<!-- ============ BIBLIOGRAPHY ============ -->
+<section id="bibliography">
+  <div class="wrap">
+    <div class="eyebrow">Bibliography</div>
+    <h2>Sources &amp; Themes</h2>
+    <p style="max-width:74ch;color:var(--ink-soft)">Each entry below indicates the central themes the source contributes to this presentation.</p>
+    <div class="bib">
+
+      <div class="bib-card">
+        <h4>King Philip&rsquo;s War: The History and Legacy of America&rsquo;s Forgotten Conflict</h4>
+        <p class="bib-cite">Schultz, Eric B., and Michael J. Tougias. <em>King Philip&rsquo;s War: The History and Legacy of America&rsquo;s Forgotten Conflict.</em> Countryman Press, 1999.</p>
+        <p class="bib-themes">Themes &middot; Narrative of the war &middot; Fragility of colonial agreements &middot; Diplomacy to violence</p>
+        <p>This book provides a detailed narrative of King Philip&rsquo;s War, its causes, key figures, and devastating consequences for both colonists and Indigenous tribes. It is useful for understanding how tensions over land and colonial expansion escalated into widespread violence. The authors highlight the fragility of colonial &ldquo;agreements&rdquo; and show how quickly diplomacy flips to violence, supporting the argument that so-called legal systems could not sustain colonial ambitions without force.</p>
+      </div>
+
+      <div class="bib-card">
+        <h4>Changes in the Land: Indians, Colonists, and the Ecology of New England</h4>
+        <p class="bib-cite">Cronon, William. <em>Changes in the Land: Indians, Colonists, and the Ecology of New England.</em> Hill and Wang, 1983.</p>
+        <p class="bib-themes">Themes &middot; Land use &middot; Property regimes &middot; Misunderstood treaties</p>
+        <p>Cronon examines how English colonists and Indigenous peoples held fundamentally different understandings of land use and ownership. This source helps explain why treaties and land &ldquo;sales&rdquo; were so often unequal or misunderstood. It supports the claim that colonial legal frameworks masked deeper conflicts over land and sovereignty, ultimately contributing to the breakdown that led to war.</p>
+      </div>
+
+      <div class="bib-card">
+        <h4>Our Beloved Kin: A New History of King Philip&rsquo;s War</h4>
+        <p class="bib-cite">Brooks, Lisa. <em>Our Beloved Kin: A New History of King Philip&rsquo;s War.</em> Yale University Press, 2018.</p>
+        <p class="bib-themes">Themes &middot; Indigenous perspective &middot; Sovereignty &middot; Resistance as response</p>
+        <p>Brooks offers a perspective centered on Indigenous experiences, particularly those connected to Metacom and other Native leaders. This source is valuable for showing how Indigenous resistance was rooted in survival and sovereignty, rather than a sudden rebellion. It strengthens the project by demonstrating that violence was not inevitable from the Indigenous side, but was often a response to colonial pressure and dispossession.</p>
+      </div>
+
+      <div class="bib-card">
+        <h4>American Colonies: The Settling of North America</h4>
+        <p class="bib-cite">Taylor, Alan. <em>American Colonies: The Settling of North America.</em> Penguin Books, 2001.</p>
+        <p class="bib-themes">Themes &middot; Continental context &middot; Patterns of expansion &middot; Recurring conflict</p>
+        <p>Taylor provides broad context on colonial expansion across North America, including patterns of land acquisition and conflict. This book helps situate King Philip&rsquo;s War within a larger trend, showing that the combination of &ldquo;legal&rdquo; expansion and violence was not isolated. It supports the concluding idea that similar dynamics appeared repeatedly in later American Indian conflicts.</p>
+      </div>
+
+    </div>
+
+    <!-- Image Sources -->
+    <div class="img-sources">
+      <h3>Image Sources</h3>
+      <p class="sub">All images are in the public domain and reproduced via Wikimedia Commons.</p>
+      <ol class="img-list">
+        <li>
+          <span class="src-title">&ldquo;Philip, King of Mount Hope&rdquo; (Hero)</span>
+          Engraving by Paul Revere, 1772. <em>Wikimedia Commons</em>, public domain.
+          <br><a href="https://commons.wikimedia.org/wiki/File:Philip_King_of_Mount_Hope_by_Paul_Revere.jpeg" target="_blank" rel="noopener">commons.wikimedia.org/wiki/File:Philip_King_of_Mount_Hope_by_Paul_Revere.jpeg</a>
+        </li>
+        <li>
+          <span class="src-title">Chief Massasoit (Background)</span>
+          Engraved portrait of Massasoit (Ousamequin), sachem of the Wampanoag. <em>Wikimedia Commons</em>, public domain.
+          <br><a href="https://commons.wikimedia.org/wiki/File:Chief_Massasoit.jpg" target="_blank" rel="noopener">commons.wikimedia.org/wiki/File:Chief_Massasoit.jpg</a>
+        </li>
+        <li>
+          <span class="src-title">Metacom at the Treaty Table (The Illusion)</span>
+          &ldquo;King (Metacomet) Philip, Sachem of the Wampanoags, d. 1676, full length, standing at treaty table with white men.&rdquo; Library of Congress, LCCN 2006686936. <em>Wikimedia Commons</em>, public domain.
+          <br><a href="https://commons.wikimedia.org/wiki/File:King_(Metacomet)_Philip,_Sachem_of_the_Wampanoags,_d._1676,_full_length,_standing_at_treaty_table_with_white_men_LCCN2006686936.jpg" target="_blank" rel="noopener">commons.wikimedia.org/wiki/File:King_(Metacomet)_Philip,_Sachem_of_the_Wampanoags,_d._1676,...</a>
+        </li>
+        <li>
+          <span class="src-title">&ldquo;Night Attack of Indians&rdquo; (Outbreak)</span>
+          19th-century engraving in the Category:King Philip&rsquo;s War. <em>Wikimedia Commons</em>, public domain.
+          <br><a href="https://commons.wikimedia.org/wiki/File:Night_Attack_of_Indians.jpg" target="_blank" rel="noopener">commons.wikimedia.org/wiki/File:Night_Attack_of_Indians.jpg</a>
+        </li>
+        <li>
+          <span class="src-title">&ldquo;Indians Attacking a Garrison House&rdquo; (Total Violence)</span>
+          19th-century engraving depicting an attack on a fortified colonial dwelling. <em>Wikimedia Commons</em>, public domain.
+          <br><a href="https://commons.wikimedia.org/wiki/File:Indians_Attacking_a_Garrison_House.jpg" target="_blank" rel="noopener">commons.wikimedia.org/wiki/File:Indians_Attacking_a_Garrison_House.jpg</a>
+        </li>
+        <li>
+          <span class="src-title">&ldquo;Pontiac, Ottawa Chief&rdquo; (Broader Pattern)</span>
+          Lithograph from the New York Public Library digital collection (NYPL Hades-254460-429686). <em>Wikimedia Commons</em>, public domain.
+          <br><a href="https://commons.wikimedia.org/wiki/File:Pontiac,_Ottawa_Chief_(NYPL_Hades-254460-429686).jpg" target="_blank" rel="noopener">commons.wikimedia.org/wiki/File:Pontiac,_Ottawa_Chief_(NYPL_Hades-254460-429686).jpg</a>
+        </li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<footer>
+  Land Without Justice &middot; American Indian History, Final Presentation &middot; Images via Wikimedia Commons (public domain)
+</footer>
+
+</body>
+</html>
